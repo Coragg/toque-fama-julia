@@ -112,7 +112,6 @@ function interface_game()
         cantidad_numeros = parse(Int64,readline())
     end
     number_to_guess = genereate_number(cantidad_numeros)
-    println(number_to_guess)
     turnos(number_to_guess, cantidad_numeros)
 end
 
