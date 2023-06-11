@@ -80,15 +80,52 @@ function count_toque_and_fama(number :: String, number_to_guess :: String)
 end
 
 
+function turnos(number_to_guess :: String, cantidad_numeros :: Int64)
+    print("Ingrese la cantidad de turnos que quiere jugar: ")
+    turnos = parse(Int64,readline())
+    for turno in 1 : turnos
+        print("$turno ) Ingrese el numero que cree que es: ")
+        number = readline()
+        if length(number) != cantidad_numeros 
+            println("$number no cumple la cantidad de caracteres permitidos, por lo cual pierdes. ")
+            break
+        elseif number_repeated(number)
+            println("$number tienes numeros repeditos, por lo cual pierdes. ")
+            break
+        end
+        toque, fama = count_toque_and_fama(number, number_to_guess)
+        if fama == cantidad_numeros
+            println("Felicidades ganaste")
+            break
+        else
+            println("Tienes $toque toques y $fama famas")
+        end
+    end
+
+end
+
+function interface_game()
+    print("Ingrese la cantidad de numeros a usar: ")
+    cantidad_numeros = parse(Int64,readline())
+    while cantidad_numeros < 3 || cantidad_numeros > 8
+        print("Ingrese una cantidad valida de numeros(3 a 8): ")
+        cantidad_numeros = parse(Int64,readline())
+    end
+    number_to_guess = genereate_number(cantidad_numeros)
+    println(number_to_guess)
+    turnos(number_to_guess, cantidad_numeros)
+end
+
+
 function game()
     while true
-        print("Ingrese S si quiere jugar y N si quiere dejar de jugar: ")
+        print("\nIngrese S si quiere jugar y N si quiere dejar de jugar: ")
         play = readline()
         if play == "S" || play == "s"
-            print("Jugremos")
+            interface_game()
         elseif play == "N" || play == "n"
             print("Gracias por jugar")
-            break
+            exit()
         else
             print("Ingrese una opcion valida")
         end
@@ -97,11 +134,10 @@ end
 
 
 function main()
-    #ask_name()
+    ask_name()
     instruction()
     game()
 end
-
 
 
 # ejecuta el
