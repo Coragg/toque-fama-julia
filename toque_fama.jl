@@ -80,9 +80,20 @@ function count_toque_and_fama(number :: String, number_to_guess :: String)
 end
 
 
+function win_or_lose(lose_win :: Int64, number_to_guess :: String)
+    # return true if the user win and false if the user lose
+    if lose_win == 1
+        println("Felicidades ganaste")
+    else
+        println("Perdiste el numero era $number_to_guess")
+    end
+end
+
+
 function turnos(number_to_guess :: String, cantidad_numeros :: Int64)
     print("Ingrese la cantidad de turnos que quiere jugar: ")
     turnos = parse(Int64,readline())
+    lose_win = 0
     for turno in 1 : turnos
         print("$turno ) Ingrese el numero que cree que es: ")
         number = readline()
@@ -91,6 +102,7 @@ function turnos(number_to_guess :: String, cantidad_numeros :: Int64)
             break
         elseif number_repeated(number)
             println("$number tienes numeros repeditos, por lo cual pierdes. ")
+            lose_win = 1
             break
         end
         toque, fama = count_toque_and_fama(number, number_to_guess)
@@ -101,8 +113,9 @@ function turnos(number_to_guess :: String, cantidad_numeros :: Int64)
             println("Tienes $toque toques y $fama famas")
         end
     end
-
+    win_or_lose(lose_win, number_to_guess)
 end
+
 
 function interface_game()
     print("Ingrese la cantidad de numeros a usar: ")
