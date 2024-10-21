@@ -1,4 +1,4 @@
-#=  
+#=
 Toque y Fama es un juego que consiste en adifinar una numero de 3 o 8 cifras.
 Donde se dira:
     *   toque: cuando adivinaste un numero pero no esta en la posicion correcta
@@ -11,7 +11,7 @@ function ask_name()
     # crea una interfaz para preguntar el nombre del usuario en consola
     print("Ingresa tu nombre de usuario: ")
     user = readline()
-    println("Bienvenido al juego toque y fama, $user.") 
+    println("Bienvenido al juego toque y fama, $user.")
 end
 
 
@@ -61,7 +61,7 @@ function genereate_number(amount_of_digits::Int64)
         end
         number *= random
     end
-    return number    
+    return number
 end
 
 
@@ -97,7 +97,7 @@ function turnos(number_to_guess :: String, cantidad_numeros :: Int64)
     for turno in 1 : turnos
         print("$turno ) Ingrese el numero que cree que es: ")
         number = readline()
-        if length(number) != cantidad_numeros 
+        if length(number) != cantidad_numeros
             println("$number no cumple la cantidad de caracteres permitidos, por lo cual pierdes. ")
             break
         elseif number_repeated(number)
@@ -133,10 +133,10 @@ function game()
     while true
         print("\nIngrese S si quiere jugar y N si quiere dejar de jugar: ")
         play = readline()
-        if play == "S" || play == "s"
+        if lowercase(play) == "s" || lowercase(play) == "si"
             interface_game()
-        elseif play == "N" || play == "n"
-            print("Gracias por jugar")
+        elseif lowercase(play) == "n" || lowercase(play) == "no"
+            println("Gracias por jugar")
             exit()
         else
             print("Ingrese una opcion valida")
@@ -152,5 +152,5 @@ function main()
 end
 
 
-# ejecuta el
+# ejecuta la aplicacion
 main()
